@@ -22,9 +22,6 @@ TF-IDF weighted term-document matrices are decomposed via truncated SVD. The res
 **2. Randomized SVD** — Halko, Martinsson & Tropp (2011)
 For large sparse matrices, exact SVD is prohibitively expensive. The HMT algorithm constructs a near-optimal low-rank approximation via random projections with power iteration, running in O(mn log k) time. This is the core computational engine of the project.
 
-**3. Optimal Hard Thresholding** — Gavish & Donoho (2014)
-Determines the rank cutoff `k` analytically under a noise model, avoiding manual hyperparameter tuning.
-
 ---
 
 ## Architecture
