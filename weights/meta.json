@@ -1,0 +1,21 @@
+{
+  "k": 250,
+  "p": 5,
+  "q": 1,
+  "vocab_size": 29024,
+  "n_docs": 30000,
+  "n_samples": 30000,
+  "corpus": "processing/documents_integers.txt",
+  "vocab_file": "processing/vocab_mapping.json",
+  "U_shape": [
+    29024,
+    250
+  ],
+  "P_shape": [
+    250,
+    29024
+  ],
+  "sigma_min": 2.68466026485455,
+  "sigma_max": 31.46326896011197,
+  "explained_variance_pct": 100.0
+}
