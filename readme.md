@@ -47,9 +47,6 @@ Raw Text (ArXiv abstracts)
   Dense Latent Embeddings  (k-dimensional, one per document)
         │
         ▼
-  IVF Approximate Nearest Neighbor Index
-        │
-        ▼
   Query → Fold-in Projection → Top-k Retrieval
 ```
 
@@ -166,5 +163,5 @@ Used **Claude (Anthropic)** as a debugging and implementation aid throughout the
 
 - Deerwester et al. (1990). *Indexing by Latent Semantic Analysis.* JASIS.
 - Halko, Martinsson & Tropp (2011). *Finding Structure with Randomness.* SIAM Review.
-
+  
 ---
