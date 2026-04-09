@@ -55,7 +55,6 @@ def test_gs(name, data):
     np_Q=Q.to_numpy()
     orth_err=np.linalg.norm(np_Q.T@np_Q - np.eye(np_Q.shape[1]))
     check(f"{name}: QtQ=I", orth_err<1e-8, f"err={orth_err:.2e}")
-    # columns of Q span col space of A: Qᵀ(A - Q Qᵀ A) should be ~0
     proj_err=np.linalg.norm(np_D - np_Q@(np_Q.T@np_D))
     check(f"{name}: Q spans col(A)", proj_err<1e-8, f"err={proj_err:.2e}")
 
@@ -63,7 +62,6 @@ test_gs("4x3", [[1,2,3],[4,5,6],[7,8,10],[2,3,5]])
 test_gs("5x3", [[1,2,1],[0,3,1],[2,1,4],[1,0,2],[3,2,1]])
 test_gs("3x3", [[2,1,3],[1,4,2],[3,2,5]])
 
-# ── 3. SVD Jacobi ────────────────────────────────────────
 section("3. SVD Jacobi")
 def test_svd(name, data):
     A=Mat(data); np_D=np.array(data,dtype=float)
@@ -80,7 +78,6 @@ test_svd("3x2",[[1,2],[3,4],[5,6]])
 test_svd("4x3",[[1,2,3],[4,5,6],[7,8,10],[2,1,3]])
 test_svd("3x3",[[2,1,0],[1,3,1],[0,1,2]])
 
-# ── 4. CSR Matrix ────────────────────────────────────────
 section("4. CSR Matrix")
 coo=[((0,0),1.0),((0,2),2.0),((1,1),3.0),((2,0),4.0),((2,2),5.0)]
 A_csr=CSR(coo,3,3)
@@ -94,7 +91,6 @@ D=Mat([[1.0,0.0],[0.0,1.0],[1.0,1.0]])
 check("CSR*Dense", allclose((A_csr*D).to_numpy(), np_M@np.array([[1,0],[0,1],[1,1]],dtype=float)))
 check("to_numpy",  allclose(A_csr.to_numpy(), np_M))
 
-# ── 5. TF-IDF ────────────────────────────────────────────
 section("5. TF-IDF")
 docs=[[0,1,1,2],[2,3,3],[0,4,4,4]]; vocab_size=5
 try:
@@ -106,7 +102,6 @@ try:
     check("values positive",  all(v>=0 for v in tfidf_mat*[1.0]*3))
 except Exception as e: print(f"  [FAIL] {e}")
 
-# ── 6. Randomized SVD ────────────────────────────────────
 section("6. Randomized SVD")
 def make_csr(m,n,rank,seed=42):
     np.random.seed(seed)
@@ -132,7 +127,7 @@ try:
     check("reconstruction<30%", rel<0.30, f"err={rel:.2%}")
 except Exception as e: print(f"  [FAIL] {e}")
 
-# ── 7. End-to-end ────────────────────────────────────────
+
 section("7. End-to-end: TF-IDF → RSVD → fold-in")
 try:
     np.random.seed(0)

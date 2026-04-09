@@ -17,9 +17,6 @@ import time
 import numpy as np
 from pathlib import Path
 
-
-# ── load ──────────────────────────────────────────────────────────────────────
-
 def load_weights(weights_dir: Path):
     """Load pre-trained LSA model."""
     required = ["P.npy", "idf.npy", "sigma.npy", "meta.json", "vocab.json", "V.npy"]
@@ -40,7 +37,7 @@ def load_weights(weights_dir: Path):
         vocab = {k: int(v) for k, v in json.load(f).items()}
 
     # document embeddings: scale V columns by singular values
-    # V[i] is the right singular vector for doc i → scaled by σ gives
+    # V[i] is the right singular vector for doc i → scaled by sigma gives
     # the doc's coordinates in latent space
     doc_vecs = V * sigma[None, :]    # n_docs × k
 
@@ -63,7 +60,6 @@ def load_titles(csv_path: Path, n_docs: int):
     return titles
 
 
-# ── query encoding ────────────────────────────────────────────────────────────
 
 def encode_query(query: str, vocab: dict, idf: np.ndarray, P: np.ndarray):
     """
@@ -124,8 +120,6 @@ def search(query: str, vocab: dict, idf: np.ndarray, P: np.ndarray,
     return results, matched
 
 
-# ── display ───────────────────────────────────────────────────────────────────
-
 def print_results(query: str, results: list, matched: list, elapsed: float):
     W = 70
     print("\n" + "─" * W)
@@ -151,8 +145,6 @@ def print_results(query: str, results: list, matched: list, elapsed: float):
         print(f"      doc_id={r['doc_id']}")
     print("─" * W + "\n")
 
-
-# ── main ──────────────────────────────────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser(description="ArXiv Semantic Search")
