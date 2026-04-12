@@ -136,7 +136,7 @@ processing
 The current model (`k=100`, `p=5`, `q=1`) was trained as a proof‑of‑concept.  
 While training is extremely fast, retrieval quality on the arXiv dataset is suboptimal due to:
 
-- Insufficient latent dimensions (`k` too small for 25k multidisciplinary abstracts).
+- Insufficient latent dimensions (`k` too small for 30k multidisciplinary abstracts).
 - Minimal text preprocessing (no lemmatization, aggressive stopword filtering).
 - Short document length (abstracts only).
 
